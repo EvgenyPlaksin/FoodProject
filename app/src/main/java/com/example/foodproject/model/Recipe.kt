@@ -1,11 +1,19 @@
 package com.example.foodproject.model
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 // тут думаю понятно всё, значения все ради теста всял
+@Parcelize
 data class Recipe(
-    var image_url: String? = "http://forkify-api.herokuapp.com/images/best_pizza_dough_recipe1b20.jpg", // нужно указать -
-    var publisher: String? = "101 Cookbooks", // можно указать -
-    var publisher_url: String? = null, // не сдалось
-    var recipe_id: String? = null, // не сдалось
-    var social_rank: Double? = null, // не сдалось
-    var source_url: String? = "http://www.101cookbooks.com/archives/001199.html", // нужно указать -
-    var title: String? = "Best Pizza Dough Ever" // нужно указать -
-)
+    var image_url: String?, // нужно указать -
+    var publisher: String? , // можно указать -
+    var publisher_url: String?, // не сдалось
+    var recipe_id: String?, // не сдалось
+    var social_rank: Double?, // не сдалось
+    var source_url: String?, // нужно указать -
+    var title: String? // нужно указать -
+
+) : Parcelable {
+    constructor() : this("", "", "", "", 0.0, "", "")
+}

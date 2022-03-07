@@ -27,7 +27,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#66BB6A"
+        android:background="#009688"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="8dp"
@@ -60,9 +60,8 @@
     </LinearLayout>
 <!--тут появляется ещё одна ошибка, оно не может надуть этот фрагмент.-->
 <!--    Советую убрать его и засунуть сюда ресайклер. Можешь и фрагмент удалить-->
-    <fragment
-        android:id="@+id/fragmentContainerView"
-        android:name="com.example.foodproject.RecyclerFragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="65dp"
