@@ -37,7 +37,7 @@ constructor(private val repository: FoodReprository) : ViewModel() {
         val apiService = AppModule.provideRetrofitInstance(ConstandVar.BASE_URL)
         apiService.getRecipe(food).enqueue(object : Callback<requestdata> {
             override fun onFailure(call: Call<requestdata>, t: Throwable) {
-
+                Log.d("tag", "getRecipe Error")
             }
 
             override fun onResponse(call: Call<requestdata>, response: Response<requestdata>) {
