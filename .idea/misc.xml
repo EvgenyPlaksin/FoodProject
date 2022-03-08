@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/drawable/edit_bg.xml" value="0.161" />
+        <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/layout/activity_browser.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/layout/fragment_browser.xml" value="0.18645833333333334" />
         <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/layout/fragment_recycler.xml" value="0.18645833333333334" />
-        <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/layout/recyclerview_item_row.xml" value="0.21" />
+        <entry key="..\:/Users/Smart/Desktop/GitHub/FoodProject/app/src/main/res/layout/recyclerview_item_row.xml" value="0.25" />
       </map>
     </option>
   </component>

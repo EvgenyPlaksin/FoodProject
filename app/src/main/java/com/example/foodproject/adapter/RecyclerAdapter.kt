@@ -15,7 +15,6 @@ import com.example.foodproject.model.Recipe
 import com.example.foodproject.model.requestdata
 import com.example.foodproject.utils.ConstandVar.food
 import com.example.foodproject.viewmodel.FoodViewModel
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
 // дристанутый адаптер. Тебе, скорее всего прийдется мучится в нем и в мейн активити

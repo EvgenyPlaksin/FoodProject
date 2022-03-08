@@ -65,8 +65,7 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.0.0"
     // Material Components
     implementation 'com.google.android.material:material:<version>'
-    // Picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
-
+    // Coil
     implementation('io.coil-kt:coil:1.1.0')
+
 }
