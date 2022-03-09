@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.webkit.*
+import android.widget.Toast
 import com.example.foodproject.ckeck.ConnectionCheck
 import com.example.foodproject.model.Recipe
 import kotlinx.android.synthetic.main.activity_browser.*
@@ -53,7 +54,8 @@ class BrowserActivity : AppCompatActivity() {
                 if(url_2 != null){
                     web_browser.loadUrl("$url_2")
                 }else{
-                    web_browser?.loadUrl(Recipe().publisher_url.toString()) // грузит ссылки http формата
+                    web_browser?.loadUrl("http://thepioneerwoman.com/cooking/2012/01/fruit-pizza/")
+                  //  Toast.makeText(this, "http://thepioneerwoman.com/cooking/2012/01/fruit-pizza/", Toast.LENGTH_LONG).show() // грузит ссылки http формата
                 }
 
                 web_browser?.settings?.javaScriptEnabled = true // we need to enable javascript

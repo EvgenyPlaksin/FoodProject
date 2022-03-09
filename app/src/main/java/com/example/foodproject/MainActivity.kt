@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodproject.adapter.RecyclerAdapter
+import com.example.foodproject.adapter.affectOnItemClicks
 import com.example.foodproject.databinding.ActivityMainBinding
 import com.example.foodproject.viewmodel.FoodViewModel
 import com.example.foodproject.ckeck.ConnectionCheck
@@ -23,6 +24,7 @@ import com.example.foodproject.ckeck.ConnectionCheck
 import com.example.foodproject.model.Recipe
 
 import com.example.foodproject.utils.ConstandVar
+
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -195,11 +197,11 @@ class MainActivity : AppCompatActivity() {
                             recyclerView.setHasFixedSize(true)
 
                             viewModel.getRecipe { food: List<Recipe> ->
-                                recyclerView.adapter = RecyclerAdapter(food)
-                            }
-                            Timer().schedule(1000){
-                                materialCardView?.setOnClickListener {
-                                    intenttobtowser()  // заменить за функцию в ресайклере потом
+                                val recycleradapter = RecyclerAdapter(food)
+                                recyclerView.adapter = recycleradapter
+                                recyclerView.affectOnItemClicks { position, view ->
+                                    val intent = Intent(this, BrowserActivity::class.java)
+                                      startActivity(intent)
                                 }
                             }
                         } else {
@@ -229,10 +231,7 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
-    fun intenttobtowser(){
-        val intent = Intent(this, BrowserActivity::class.java)
-        startActivity(intent)
-    }
+
 }
 
 
