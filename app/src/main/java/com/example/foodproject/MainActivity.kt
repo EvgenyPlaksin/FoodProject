@@ -200,6 +200,7 @@ class MainActivity : AppCompatActivity() {
                                 val recycleradapter = RecyclerAdapter(food)
                                 recyclerView.adapter = recycleradapter
                                 recyclerView.affectOnItemClicks { position, view ->
+                                    ConstandVar.browser_url = helptv.text.toString()
                                     val intent = Intent(this, BrowserActivity::class.java)
                                       startActivity(intent)
                                 }

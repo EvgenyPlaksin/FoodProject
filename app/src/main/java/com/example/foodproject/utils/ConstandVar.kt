@@ -3,4 +3,5 @@ package com.example.foodproject.utils
 object ConstandVar {
     const val BASE_URL = "https://forkify-api.herokuapp.com/api/"
     var food: String? = null
+    var browser_url: String? = null
 }

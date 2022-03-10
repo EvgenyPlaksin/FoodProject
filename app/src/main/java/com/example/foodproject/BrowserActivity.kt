@@ -12,6 +12,7 @@ import android.webkit.*
 import android.widget.Toast
 import com.example.foodproject.ckeck.ConnectionCheck
 import com.example.foodproject.model.Recipe
+import com.example.foodproject.utils.ConstandVar
 import kotlinx.android.synthetic.main.activity_browser.*
 
 var uploadMessage: ValueCallback<Array<Uri>>? = null
@@ -47,15 +48,20 @@ class BrowserActivity : AppCompatActivity() {
 
                     web_browser.loadUrl(URL)
                     back_btn.setOnClickListener {
-                        web_browser.goBack()
+                        if (web_browser.canGoBack()) {
+                            web_browser.goBack()
+                        } else {
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }
                     }
                 }
 
                 if(url_2 != null){
                     web_browser.loadUrl("$url_2")
                 }else{
-                    web_browser?.loadUrl("http://thepioneerwoman.com/cooking/2012/01/fruit-pizza/")
-                  //  Toast.makeText(this, "http://thepioneerwoman.com/cooking/2012/01/fruit-pizza/", Toast.LENGTH_LONG).show() // грузит ссылки http формата
+                    web_browser?.loadUrl(ConstandVar.browser_url.toString())
+                    Toast.makeText(this, ConstandVar.browser_url.toString(), Toast.LENGTH_LONG).show() // грузит ссылки http формата
                 }
 
                 web_browser?.settings?.javaScriptEnabled = true // we need to enable javascript
@@ -104,7 +110,8 @@ class BrowserActivity : AppCompatActivity() {
         if (web_browser.canGoBack()) {
             web_browser.goBack()
         } else {
-            Log.d("TAG", "can`t go back")
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 

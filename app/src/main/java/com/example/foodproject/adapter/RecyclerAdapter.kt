@@ -16,8 +16,10 @@ import com.example.foodproject.R
 import com.example.foodproject.RecyclerItemClickListener
 import com.example.foodproject.model.Recipe
 import com.example.foodproject.model.requestdata
+import com.example.foodproject.utils.ConstandVar
 import com.example.foodproject.utils.ConstandVar.food
 import com.example.foodproject.viewmodel.FoodViewModel
+import kotlinx.android.synthetic.main.recyclerview_item_row.*
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
 // дристанутый адаптер
@@ -40,8 +42,6 @@ class RecyclerAdapter(
     : RecyclerView.Adapter<RecyclerAdapter.FoodHolder>() {
 
     inner class FoodHolder(view: View) : RecyclerView.ViewHolder(view) {
-        //        val vieww = view
-        // тут, думаю ясно всё
         fun bindRecipe(recipe: Recipe) {
             itemView.textView.text = recipe.title
             itemView.textView3.text = recipe.publisher
@@ -50,12 +50,12 @@ class RecyclerAdapter(
                 // when our image url fails to load.
                 placeholder(R.drawable.ic_baseline_error_24)
             }
-
+            itemView.helptv.text = recipe.source_url
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.FoodHolder {
-        // шаблонный код, который 100% правильный
+        // шаблонный код
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.recyclerview_item_row, parent, false)
 
@@ -64,10 +64,7 @@ class RecyclerAdapter(
 
     override fun onBindViewHolder(holder: RecyclerAdapter.FoodHolder, position: Int) {
         holder.bindRecipe(dataset.get(position))
-//        holder.vieww.setOnClickListener {
-//            val intent = Intent(holder.itemView.context, BrowserActivity::class.java)
-//            holder.vieww.startActivity(intent)
-//        } // click event
+
     }
 
     override fun getItemCount(): Int = dataset.size
