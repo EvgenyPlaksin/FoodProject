@@ -61,7 +61,6 @@ class BrowserActivity : AppCompatActivity() {
                     web_browser.loadUrl("$url_2")
                 }else{
                     web_browser?.loadUrl(ConstandVar.browser_url.toString())
-                    Toast.makeText(this, ConstandVar.browser_url.toString(), Toast.LENGTH_LONG).show() // грузит ссылки http формата
                 }
 
                 web_browser?.settings?.javaScriptEnabled = true // we need to enable javascript
@@ -145,7 +144,6 @@ class WebClient internal constructor(private val activity: Activity): WebViewCli
     }
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
         if (url?.startsWith("tel:") == true || url?.startsWith("mailto:") == true || url?.startsWith("tg:") == true) {
-            //   startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) тут странная ошибка
             return true
         } else {
             if (url != null) {

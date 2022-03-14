@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.foodproject.BrowserActivity
+import com.example.foodproject.CellClickListener
 import com.example.foodproject.R
-import com.example.foodproject.RecyclerItemClickListener
 import com.example.foodproject.model.Recipe
 import com.example.foodproject.model.requestdata
 import com.example.foodproject.utils.ConstandVar
@@ -22,22 +22,9 @@ import com.example.foodproject.viewmodel.FoodViewModel
 import kotlinx.android.synthetic.main.recyclerview_item_row.*
 import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
-// дристанутый адаптер
-@JvmOverloads
-fun RecyclerView.affectOnItemClicks(
-    onClick: ((position: Int, view: View) -> Unit)? = null,
-    onLongClick: ((position: Int, view: View) -> Unit)? = null
-) {
-    this.addOnChildAttachStateChangeListener(
-        RecyclerItemClickListener(
-            this,
-            onClick,
-            onLongClick
-        )
-    )
-}
 class RecyclerAdapter(
-    private val dataset: List<Recipe>
+    private val dataset: List<Recipe>,
+    private val cellClickListener: CellClickListener
 )
     : RecyclerView.Adapter<RecyclerAdapter.FoodHolder>() {
 
@@ -50,7 +37,6 @@ class RecyclerAdapter(
                 // when our image url fails to load.
                 placeholder(R.drawable.ic_baseline_error_24)
             }
-            itemView.helptv.text = recipe.source_url
         }
     }
 
@@ -63,8 +49,11 @@ class RecyclerAdapter(
     }
 
     override fun onBindViewHolder(holder: RecyclerAdapter.FoodHolder, position: Int) {
-        holder.bindRecipe(dataset.get(position))
-
+        val data = dataset[position].source_url
+        holder.bindRecipe(dataset[position])
+        holder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener(data.toString())
+        }
     }
 
     override fun getItemCount(): Int = dataset.size

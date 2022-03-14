@@ -16,7 +16,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foodproject.adapter.RecyclerAdapter
-import com.example.foodproject.adapter.affectOnItemClicks
+
 import com.example.foodproject.databinding.ActivityMainBinding
 import com.example.foodproject.viewmodel.FoodViewModel
 import com.example.foodproject.ckeck.ConnectionCheck
@@ -39,7 +39,7 @@ import kotlin.concurrent.schedule
 //он облегчает ппц всё, погугли ели не шаришь.
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CellClickListener {
     var a = 0
     private lateinit var binding: ActivityMainBinding
     private val viewModel: FoodViewModel by viewModels()
@@ -190,20 +190,15 @@ class MainActivity : AppCompatActivity() {
                     if (binding.edittext.text?.length != 0) {
                         if (true_or_not(binding.edittext.text.toString())) {
                             invisibletextview.visibility = View.INVISIBLE
-//                тут я беру текст с эдиттекста и сую в конст енд вар, оттуда ретрофит берёт название еды
-//                и добавляет к ссылке, потом запускается функция (или метод) в вьюмодели
+
                             ConstandVar.food = binding.edittext.text.toString()
                             recyclerView.layoutManager = LinearLayoutManager(this)
                             recyclerView.setHasFixedSize(true)
 
                             viewModel.getRecipe { food: List<Recipe> ->
-                                val recycleradapter = RecyclerAdapter(food)
+                                val recycleradapter = RecyclerAdapter(food, this)
                                 recyclerView.adapter = recycleradapter
-                                recyclerView.affectOnItemClicks { position, view ->
-                                    ConstandVar.browser_url = helptv.text.toString()
-                                    val intent = Intent(this, BrowserActivity::class.java)
-                                      startActivity(intent)
-                                }
+
                             }
                         } else {
                             recyclerView.adapter = null
@@ -220,19 +215,29 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
     }
 
     fun true_or_not(ures_request: String): Boolean {
-        for(i in true_food){
-            if(ures_request.equals(i, ignoreCase = true)){
+        for (i in true_food) {
+            if (ures_request.equals(i, ignoreCase = true)) {
                 return true
             }
         }
         return false
     }
 
+    override fun onCellClickListener(data: String) {
+        ConstandVar.browser_url = data
+        val intent = Intent(this, BrowserActivity::class.java)
+        startActivity(intent)
+
+    }
+    override fun onBackPressed() {
+        var i = Intent(Intent.ACTION_MAIN)
+        i.addCategory(Intent.CATEGORY_HOME)
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(i)
+    }
 }
 
 
