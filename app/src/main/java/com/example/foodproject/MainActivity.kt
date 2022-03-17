@@ -25,7 +25,6 @@ import com.example.foodproject.model.Recipe
 
 import com.example.foodproject.utils.ConstandVar
 
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
 import kotlinx.android.synthetic.main.recyclerview_item_row.*
@@ -33,16 +32,18 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 import kotlin.concurrent.schedule
 
 //у меня тут юзается и биндинг и плагин зависимостей. Второй во фрагменте. Аннотации все к даггер хилт,
 //он облегчает ппц всё, погугли ели не шаришь.
 
-@AndroidEntryPoint
+
 class MainActivity : AppCompatActivity(), CellClickListener {
-    var a = 0
+
     private lateinit var binding: ActivityMainBinding
     private val viewModel: FoodViewModel by viewModels()
+
     lateinit var cld: ConnectionCheck
     val true_food = listOf<String>(
         "carrot",
@@ -179,6 +180,9 @@ class MainActivity : AppCompatActivity(), CellClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        (applicationContext as MyApplication).appComponent.inject(this)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recycler)
         cld = ConnectionCheck(application)
 

@@ -4,15 +4,15 @@ import com.example.foodproject.api.ApiService
 import com.example.foodproject.utils.ConstandVar
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 // жестоко юзаю хилт и ретрофит, тебе тут ничего менять не надо
+
+//@InstallIn(SingletonComponent::class)
 @Module
-@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides

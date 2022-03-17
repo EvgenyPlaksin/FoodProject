@@ -13,18 +13,17 @@ import com.example.foodproject.reprository.FoodReprository
 import com.example.foodproject.utils.ConstandVar
 import com.example.foodproject.utils.ConstandVar.BASE_URL
 import com.example.foodproject.utils.ConstandVar.food
-import dagger.hilt.android.lifecycle.HiltViewModel
+
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import javax.inject.Inject
 // вьюмодель в которой юзается хилт, лайвдата и корутины
-@HiltViewModel
-class FoodViewModel
-@Inject
-constructor(private val repository: FoodReprository) : ViewModel() {
-// забей на это, тут всё ок
+
+class FoodViewModel: ViewModel() {
+   @Inject lateinit var repository: FoodReprository
+
     private val _response = MutableLiveData<requestdata>()
     val foodResponse: LiveData<requestdata>
         get() = _response
